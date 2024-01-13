@@ -16,11 +16,11 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
 
 ## Task List
 
-- [ ] Setup
+- [x] Setup
   - [x] Front end placeholder
   - [x] Back end placeholder
   - [x] FE connect to BE and have E2E work
-  - [ ] Add bootstrap for styling
+  - [x] Add bootstrap for styling
 - [ ] Workflow building
   - [ ] Add efcore with database
   - [ ] Named workflow
