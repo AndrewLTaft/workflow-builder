@@ -22,6 +22,36 @@
       "label": "Build",
       "group": "build",
       "dependsOn": ["Client Build", "Server Build"]
+    },
+
+    {
+      "label": "Server Run",
+      "type": "shell",
+      "command": "dotnet watch run --project ./backend/Api/Api.csproj",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Client Run",
+      "type": "npm",
+      "script": "start",
+      "path": "frontend",
+      "problemMatcher": ["$tsc-watch"],
+      "detail": "nx serve",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated"
+      }
+    },
+    {
+      "label": "Run",
+      "isBackground": true,
+      "dependsOn": ["Client Run", "Server Run"],
+      "problemMatcher": ["$tsc-watch", "$msCompile"]
     }
   ]
 }

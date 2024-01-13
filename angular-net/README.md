@@ -20,6 +20,9 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
   - [x] Front end placeholder
   - [x] Back end placeholder
   - [ ] Launch both projects through single command and have them work together with e2e test that proves it
+    - [x] Single command to launch both
+    - [ ] Update angular to call backend
+    - [ ] E2E test run
 - [ ] Workflow building
   - [ ] Add efcore with database
   - [ ] Named workflow
