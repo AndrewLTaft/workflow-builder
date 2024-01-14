@@ -1,0 +1,22 @@
+<ul class="nav nav-pills nav-fill flex-column">
+  <li class="nav-item">
+    <a
+      class="nav-link mb-3"
+      [routerLink]="'new'"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >New Workflow</a
+    >
+  </li>
+  @for (workflow of workflows$ | async; track workflow.id) {
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [routerLink]="[workflow.id]"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >{{ workflow.name }}</a
+    >
+  </li>
+  }
+</ul>

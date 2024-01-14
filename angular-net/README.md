@@ -22,8 +22,8 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
   - [x] FE connect to BE and have E2E work
   - [x] Add bootstrap for styling
 - [ ] Workflow building
-  - [ ] Add efcore with database
-  - [ ] Named workflow
+  - [x] Add efcore with database
+  - [x] Named workflow
   - [ ] Add steps to workflow with name
 - [ ] Move parts through workflows
 - [ ] Resources
