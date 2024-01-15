@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-
+import { Inject, Injectable } from '@angular/core';
+import { COMMON_CONFIG_TOKEN, Config } from '@frontend/common-config';
 @Injectable({
   providedIn: 'root',
 })
 export class WorkflowHttpClientService {
-  private baseUrl = 'http://localhost:5267/';
-  constructor(private http: HttpClient) {}
+  private baseUrl = this.config.apiBaseURL;
+  constructor(
+    private http: HttpClient,
+    @Inject(COMMON_CONFIG_TOKEN) private config: Config
+  ) {}
 
   public GetAll() {
     return this.http.get<Workflow_Get_DTO[]>(this.baseUrl + 'workflow');
