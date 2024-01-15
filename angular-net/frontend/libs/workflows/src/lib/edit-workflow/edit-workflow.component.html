@@ -43,6 +43,28 @@
           >
             Remove Step
           </button>
+          <div
+            class="btn-group float-end"
+            role="group"
+            aria-label="Basic example"
+          >
+            <button
+              type="button"
+              [disabled]="$first"
+              class="btn btn-outline-primary"
+              (click)="MoveUp(i)"
+            >
+              Up
+            </button>
+            <button
+              type="button"
+              [disabled]="$last"
+              class="btn btn-outline-primary"
+              (click)="MoveDown(i)"
+            >
+              Down
+            </button>
+          </div>
         </div>
       </div>
       }

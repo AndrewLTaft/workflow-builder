@@ -87,6 +87,18 @@ export class EditWorkflowComponent {
     this.formSteps.removeAt(i);
   }
 
+  public MoveUp(i: number) {
+    const tmp = this.formSteps.at(i - 1);
+    this.formSteps.setControl(i - 1, this.formSteps.at(i));
+    this.formSteps.setControl(i, tmp);
+  }
+
+  public MoveDown(i: number) {
+    const tmp = this.formSteps.at(i + 1);
+    this.formSteps.setControl(i + 1, this.formSteps.at(i));
+    this.formSteps.setControl(i, tmp);
+  }
+
   public Submit() {
     if (this.form.valid) {
       this.store.Update(this.form.getRawValue());
