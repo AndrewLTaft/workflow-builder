@@ -15,10 +15,6 @@ export class WorkflowHttpClientService {
     return this.http.get<Workflow_Get_DTO[]>(this.baseUrl + 'workflow');
   }
 
-  public GetById(id: number) {
-    return this.http.get<Workflow_Get_DTO>(`${this.baseUrl}workflow/${id}`);
-  }
-
   public Create(model: Workflow_Create_DTO) {
     return this.http.post<Workflow_Get_DTO>(`${this.baseUrl}workflow`, model);
   }
@@ -32,14 +28,17 @@ export interface Workflow_Get_DTO {
   id: number;
   name: string;
   description?: string;
+  steps: { id: number; name: string }[];
 }
 
 export interface Workflow_Create_DTO {
   name: string;
   description?: string;
+  steps: { name: string }[];
 }
 export interface Workflow_Update_DTO {
   id: number;
   name: string;
   description?: string;
+  steps: { id?: number; name: string }[];
 }

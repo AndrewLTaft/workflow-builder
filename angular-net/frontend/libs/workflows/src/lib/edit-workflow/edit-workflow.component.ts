@@ -20,7 +20,22 @@ import { Workflow, WorkflowStoreService } from '../workflow-store.service';
 export class EditWorkflowComponent {
   public workflow$ = this.route.data.pipe(
     map((data) => data['workflow'] as Workflow),
-    tap((wf) => this.form.patchValue(wf))
+    tap((wf) => {
+      this.form.patchValue(wf);
+      this.form.controls.steps.clear();
+      wf.steps?.forEach((s) => {
+        const newGroup = this.fb.group({
+          id: [undefined as number | undefined],
+          name: [
+            s.name,
+            {
+              validators: [Validators.required],
+            },
+          ],
+        });
+        this.form.controls.steps.push(newGroup);
+      });
+    })
   );
 
   public form = this.fb.group({
@@ -32,6 +47,17 @@ export class EditWorkflowComponent {
       },
     ],
     description: [''],
+    steps: this.fb.array([
+      this.fb.group({
+        id: [undefined as number | undefined],
+        name: [
+          '',
+          {
+            validators: [Validators.required],
+          },
+        ],
+      }),
+    ]),
   });
 
   constructor(
@@ -40,10 +66,30 @@ export class EditWorkflowComponent {
     private fb: NonNullableFormBuilder
   ) {}
 
+  get formSteps() {
+    return this.form.controls['steps'];
+  }
+  public AddStep() {
+    const stepForm = this.fb.group({
+      id: [undefined as number | undefined],
+      name: [
+        '',
+        {
+          validators: [Validators.required],
+        },
+      ],
+    });
+
+    this.formSteps.push(stepForm);
+  }
+
+  public RemoveStep(i: number) {
+    this.formSteps.removeAt(i);
+  }
+
   public Submit() {
     if (this.form.valid) {
-      const formValue = { ...{ name: '' }, ...this.form.value };
-      this.store.Update(formValue);
+      this.store.Update(this.form.getRawValue());
     }
   }
 }

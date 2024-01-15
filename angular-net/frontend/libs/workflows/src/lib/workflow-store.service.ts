@@ -60,4 +60,5 @@ export interface Workflow {
   id: number;
   name: string;
   description?: string;
+  steps: { id?: number; name: string }[];
 }

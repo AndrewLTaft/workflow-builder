@@ -22,6 +22,36 @@
       [formControlName]="'description'"
     ></textarea>
   </div>
+  <div class="card mb-3" [formArrayName]="'steps'">
+    <div class="card-body">
+      <h5 class="card-title">Steps</h5>
+      @for(formStep of formSteps.controls; track formStep; let i = $index) {
+      <div class="card mb-3">
+        <div class="card-body" [formGroup]="formStep">
+          <label [for]="'step-name' + i" class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control mb-2"
+            [id]="'step-name' + i"
+            placeholder="Step name"
+            [formControlName]="'name'"
+          />
+          <button
+            type="button"
+            class="btn btn-outline-primary"
+            (click)="RemoveStep(i)"
+          >
+            Remove Step
+          </button>
+        </div>
+      </div>
+      }
+      <button type="button" class="btn btn-outline-primary" (click)="AddStep()">
+        Add Step
+      </button>
+    </div>
+  </div>
+
   <button
     type="submit"
     class="btn btn-primary"
