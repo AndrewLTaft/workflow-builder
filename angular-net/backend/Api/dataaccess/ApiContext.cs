@@ -9,7 +9,6 @@ public class ApiContext : DbContext
 {
     public DbSet<Api.DataAcess.Models.Workflow> Workflows { get; set; }
 
-    
-    public ApiContext (DbContextOptions<ApiContext> options)
-            : base(options) {}
+    public ApiContext(DbContextOptions<ApiContext> options)
+            : base(options) { }
 }

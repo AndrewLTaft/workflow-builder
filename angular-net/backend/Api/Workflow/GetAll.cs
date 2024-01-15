@@ -10,11 +10,18 @@ public class GetAll
     builder.MapGet("workflow", async (ApiContext db) =>
     {
       return await db.Workflows
-          .Select(w => new Workflow_GetAll_Response(w.Id, w.Name, w.Description))
+
+          .Select(w => new Workflow_GetAll_Response(
+            w.Id,
+            w.Name,
+            w.Description,
+            w.Steps.OrderBy(s => s.Order).Select(s => new Step_Response(s.Id, s.Name)).ToList()))
           .ToListAsync();
     })
     .WithOpenApi();
   }
 }
 
-record Workflow_GetAll_Response(int Id, string Name, string? Description);
+record Workflow_GetAll_Response(int Id, string Name, string? Description, List<Step_Response> steps);
+
+record Step_Response(int Id, string Name);
