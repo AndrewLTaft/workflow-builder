@@ -28,12 +28,15 @@ export class WorkflowHttpClientService {
 export interface Workflow_Get_DTO {
   id: number;
   name: string;
+  description?: string;
 }
 
 export interface Workflow_Create_DTO {
   name: string;
+  description?: string;
 }
 export interface Workflow_Update_DTO {
   id: number;
   name: string;
+  description?: string;
 }

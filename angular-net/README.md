@@ -24,6 +24,7 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
 - [ ] Workflow building
   - [x] Add efcore with database
   - [x] Named workflow
+  - [x] Add description to workflow
   - [ ] Add steps to workflow with name
 - [ ] Move parts through workflows
 - [ ] Resources

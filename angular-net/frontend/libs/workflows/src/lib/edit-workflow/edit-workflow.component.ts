@@ -31,6 +31,7 @@ export class EditWorkflowComponent {
         validators: [Validators.required],
       },
     ],
+    description: [''],
   });
 
   constructor(

@@ -13,10 +13,11 @@ public class Update
       if (await db.Workflows.FirstOrDefaultAsync(w => w.Id == workflow.Id) is Api.DataAcess.Models.Workflow dbModel)
       {
         dbModel.Name = workflow.Name;
+        dbModel.Description = workflow.Description;
 
         await db.SaveChangesAsync();
 
-        return Results.Ok(new Workflow_Post_Response(dbModel.Id, dbModel.Name));
+        return Results.Ok(new Workflow_Put_Response(dbModel.Id, dbModel.Name, dbModel.Description));
       }
       else
       {
@@ -29,6 +30,6 @@ public class Update
   }
 }
 
-record Workflow_Put_Request(int Id, string Name);
+record Workflow_Put_Request(int Id, string Name, string? Description);
 
-record Workflow_Put_Response(int Id, string Name);
+record Workflow_Put_Response(int Id, string Name, string? Description);
