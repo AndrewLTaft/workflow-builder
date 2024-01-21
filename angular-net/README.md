@@ -21,11 +21,16 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
   - [x] Back end placeholder
   - [x] FE connect to BE and have E2E work
   - [x] Add bootstrap for styling
-- [ ] Workflow building
+- [x] Workflow building
   - [x] Add efcore with database
   - [x] Named workflow
   - [x] Add description to workflow
-  - [ ] Add steps to workflow with name
+  - [x] Add steps to workflow with name
+- [ ] Prepare for Github actions
+  - [x] Pass nx lint
+  - [x] Pass nx test
+  - [x] Pass dotnet test
+  - [ ] Build sample e2e test that runs front and back
 - [ ] Move parts through workflows
 - [ ] Resources
 - [ ] Act as a resource (complete steps)
