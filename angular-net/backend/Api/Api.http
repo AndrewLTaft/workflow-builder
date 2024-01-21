@@ -1,6 +1,17 @@
 @Api_HostAddress = http://localhost:5267
 
-GET {{Api_HostAddress}}/weatherforecast/
+###
+Get {{Api_HostAddress}}/workflow
 Accept: application/json
 
 ###
+Get {{Api_HostAddress}}/part
+Accept: application/json
+
+###
+POST {{Api_HostAddress}}/part
+Content-Type: application/json
+
+{
+  "workflowId": 1
+}

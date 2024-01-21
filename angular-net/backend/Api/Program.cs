@@ -1,5 +1,6 @@
 using Api.DataAcess;
 using Api.DataAcess.Models;
+using Api.Part;
 using Api.Workflow;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,6 +52,7 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.RegisterWorkflowEndpoints();
+app.RegisterPartEndpoints();
 
 app.Run();
 
