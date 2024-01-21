@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@frontend/common-config": ["libs/common-config/src/index.ts"],
+      "@frontend/parts": ["libs/parts/src/index.ts"],
       "@frontend/workflows": ["libs/workflows/src/index.ts"]
     }
   },
