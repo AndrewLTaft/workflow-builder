@@ -7,5 +7,5 @@ public class Workflow
   public required string Name { get; set; }
   public string? Description { get; set; }
 
-  public List<Step> Steps { get; set; } = new();
+  public ICollection<Step> Steps { get; } = new List<Step>();
 }
