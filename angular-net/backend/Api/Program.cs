@@ -1,6 +1,6 @@
 using Api.DataAcess;
 using Api.DataAcess.Models;
-using Api.Part;
+using Api.Parts;
 using Api.Workflows;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,6 +29,7 @@ builder.Services.AddDbContext<ApiContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddScoped<WorkflowService>();
+builder.Services.AddScoped<PartService>();
 
 var app = builder.Build();
 

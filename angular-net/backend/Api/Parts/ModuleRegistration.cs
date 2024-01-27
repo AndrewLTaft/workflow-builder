@@ -1,4 +1,4 @@
-namespace Api.Part;
+namespace Api.Parts;
 
 public static class PartApiRegistration
 {
