@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { map, tap } from 'rxjs';
 
-import { Workflow, WorkflowStoreService } from '../workflow-store.service';
+import { Workflow, WorkflowStoreService } from '@frontend/data-access';
 
 @Component({
   selector: 'frontend-edit-workflow',

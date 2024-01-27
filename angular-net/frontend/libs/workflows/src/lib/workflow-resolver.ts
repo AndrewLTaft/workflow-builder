@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { ActivatedRouteSnapshot, ResolveFn, Router } from '@angular/router';
 import { EMPTY, mergeMap, of } from 'rxjs';
 
-import { Workflow, WorkflowStoreService } from './workflow-store.service';
+import { Workflow, WorkflowStoreService } from '@frontend/data-access';
 
 export const workflowResolver: ResolveFn<Workflow> = (
   route: ActivatedRouteSnapshot

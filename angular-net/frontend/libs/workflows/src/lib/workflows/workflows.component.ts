@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WorkflowStoreService } from '../workflow-store.service';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
+import { WorkflowStoreService } from '@frontend/data-access';
 
 @Component({
   selector: 'frontend-workflows',
