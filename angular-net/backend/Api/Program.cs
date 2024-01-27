@@ -1,7 +1,7 @@
 using Api.DataAcess;
 using Api.DataAcess.Models;
 using Api.Part;
-using Api.Workflow;
+using Api.Workflows;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,6 +28,7 @@ builder.Services.AddDbContext<ApiContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("ApiContextSqlite")));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddScoped<WorkflowService>();
 
 var app = builder.Build();
 

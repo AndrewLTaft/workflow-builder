@@ -1,4 +1,4 @@
-namespace Api.Workflow;
+namespace Api.Workflows;
 
 public static class WorkflowApiRegistration
 {

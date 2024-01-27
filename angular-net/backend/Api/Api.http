@@ -5,6 +5,37 @@ Get {{Api_HostAddress}}/workflow
 Accept: application/json
 
 ###
+Post {{Api_HostAddress}}/workflow
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Workflow 1",
+  "description": "this is a description",
+  "steps": [
+    "step 1",
+    "step 2",
+    "step 3"
+  ]
+}
+
+###
+Put {{Api_HostAddress}}/workflow
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": "1",
+  "name": "Workflow 1",
+  "description": "this is a description",
+  "steps": [
+    {"id": 1, "name": "step 1"},
+    {"id": 3, "name": "step 3"},
+    {"id": 2, "name": "step 2"}
+  ]
+}
+
+###
 Get {{Api_HostAddress}}/part
 Accept: application/json
 
