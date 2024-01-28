@@ -21,11 +21,12 @@ export class EditWorkflowComponent {
   public workflow$ = this.route.data.pipe(
     map((data) => data['workflow'] as Workflow),
     tap((wf) => {
+      console.log(wf);
       this.form.patchValue(wf);
       this.form.controls.steps.clear();
       wf.steps?.forEach((s) => {
         const newGroup = this.fb.group({
-          id: [undefined as number | undefined],
+          id: [s.id],
           name: [
             s.name,
             {
@@ -49,7 +50,7 @@ export class EditWorkflowComponent {
     description: [''],
     steps: this.fb.array([
       this.fb.group({
-        id: [undefined as number | undefined],
+        id: [undefined as string | undefined],
         name: [
           '',
           {
@@ -71,7 +72,7 @@ export class EditWorkflowComponent {
   }
   public AddStep() {
     const stepForm = this.fb.group({
-      id: [undefined as number | undefined],
+      id: [undefined as string | undefined],
       name: [
         '',
         {

@@ -51,8 +51,14 @@ public class WorkflowService
 
   public async Task<Workflow> UpdateAsync(Workflow workflow)
   {
-    if (await db.Workflows.Include(w => w.Steps).FirstOrDefaultAsync(w => w.Id == workflow.Id) is Api.DataAcess.Models.Workflow dbModel)
+    if (await db.Workflows.Include(w => w.Steps).Include(w => w.Parts).FirstOrDefaultAsync(w => w.Id == workflow.Id) is Api.DataAcess.Models.Workflow dbModel)
     {
+      //cant edit workflows with not completed parts
+      if (dbModel.Parts.Any(p => !p.Completed))
+      {
+        throw new ArgumentException("Workflow has active parts");
+      }
+
       dbModel.Name = workflow.Name;
       dbModel.Description = workflow.Description;
 

@@ -29,7 +29,7 @@ export interface Workflow_Get_DTO {
   id: number;
   name: string;
   description?: string;
-  steps: { id: number; name: string }[];
+  steps: { id: string; name: string }[];
 }
 
 export interface Workflow_Create_DTO {
@@ -41,5 +41,5 @@ export interface Workflow_Update_DTO {
   id: number;
   name: string;
   description?: string;
-  steps: { id?: number; name: string }[];
+  steps: { id?: string; name: string }[];
 }

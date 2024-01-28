@@ -48,7 +48,6 @@ public class PartService
       if (nextStep == null)
       {
         dbModel.StepId = null;
-        dbModel.Step = null;
         dbModel.Completed = true;
       }
       else

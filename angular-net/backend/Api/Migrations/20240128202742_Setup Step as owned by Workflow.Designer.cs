@@ -3,6 +3,7 @@ using System;
 using Api.DataAcess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Api.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240128202742_Setup Step as owned by Workflow")]
+    partial class SetupStepasownedbyWorkflow
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.1");
@@ -37,7 +40,7 @@ namespace Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Parts", (string)null);
+                    b.ToTable("Parts");
                 });
 
             modelBuilder.Entity("Api.DataAcess.Models.Workflow", b =>
@@ -55,12 +58,12 @@ namespace Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Workflows", (string)null);
+                    b.ToTable("Workflows");
                 });
 
             modelBuilder.Entity("Api.DataAcess.Models.Workflow", b =>
                 {
-                    b.OwnsMany("Api.DataAcess.Models.Workflow.Steps#Api.DataAcess.Models.Step", "Steps", b1 =>
+                    b.OwnsMany("Api.DataAcess.Models.Step", "Steps", b1 =>
                         {
                             b1.Property<int>("WorkflowId")
                                 .HasColumnType("INTEGER");
@@ -78,7 +81,7 @@ namespace Api.Migrations
 
                             b1.HasKey("WorkflowId", "Id");
 
-                            b1.ToTable("Step", (string)null);
+                            b1.ToTable("Step");
 
                             b1.WithOwner()
                                 .HasForeignKey("WorkflowId");

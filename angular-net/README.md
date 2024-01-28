@@ -34,7 +34,9 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
 - [ ] Move parts through workflows
   - [x] Create parts
   - [x] Parts are on a step and can be advanced/completed
-  - [ ] Prevent editing Workflows with parts that are not completed
+  - [x] Prevent editing Workflows with parts that are not completed
+  - [ ] Change to only prevent removing steps that are currently active for a part
+  - [ ] Split out query functionality for Parts so we can prevent updates prior to attempt
 - [ ] Resources
 - [ ] Act as a resource (complete steps)
 - [ ] More complex business rules around editing workflows

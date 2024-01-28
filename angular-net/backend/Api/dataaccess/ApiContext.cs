@@ -13,4 +13,11 @@ public class ApiContext : DbContext
 
     public ApiContext(DbContextOptions<ApiContext> options)
             : base(options) { }
+
+    #region Required
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApiContext).Assembly);
+    }
+    #endregion
 }
