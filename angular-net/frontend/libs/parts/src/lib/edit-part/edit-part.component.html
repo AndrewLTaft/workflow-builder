@@ -1,1 +1,19 @@
-<p>EditPart works!</p>
+@if (viewModel$ | async; as vm) {
+<p>
+  <strong>{{ vm.workflowName }}</strong> -
+  {{ vm.part.createdAt | date : 'short' }}
+</p>
+
+@if(vm.part.completed) {
+<p>Completed</p>
+} @else {
+<p>Current Step: {{ vm.stepName }}</p>
+} @if (!vm.part.completed ) { @if(vm.part.stepId) {
+<button type="submit" class="btn btn-primary" (click)="nextStep(vm.part)">
+  Complete Step
+</button>
+} @else {
+<button type="submit" class="btn btn-primary" (click)="nextStep(vm.part)">
+  Start Part
+</button>
+} } }

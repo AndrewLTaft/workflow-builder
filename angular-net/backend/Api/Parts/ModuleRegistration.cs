@@ -6,6 +6,6 @@ public static class PartApiRegistration
   {
     GetAll.Register(builder);
     Create.Register(builder);
-    //Update.Register(builder);
+    CompleteStep.Register(builder);
   }
 }

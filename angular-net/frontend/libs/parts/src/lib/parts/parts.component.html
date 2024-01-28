@@ -15,7 +15,7 @@
       [routerLink]="[part.id]"
       routerLinkActive="active"
       ariaCurrentWhenActive="page"
-      >{{ part.id }}</a
+      >{{ part.createdAt | date : 'short' }}</a
     >
   </li>
   }

@@ -21,8 +21,18 @@ export class PartHttpClientService {
       workflowId: workflowId,
     });
   }
+
+  public CompleteStep(partId: number) {
+    return this.http.patch<Part_Get_DTO>(
+      this.baseUrl + 'part/' + partId + '/completestep',
+      {}
+    );
+  }
 }
 export interface Part_Get_DTO {
   id: number;
   workflowId: number;
+  createdAt: string;
+  completed: boolean;
+  stepId?: string;
 }
