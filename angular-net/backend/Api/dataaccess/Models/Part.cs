@@ -4,6 +4,8 @@ public class Part
 {
   public int Id { get; set; }
 
+  public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
   public required int WorkflowId { get; set; }
 
   public Workflow? Workflow { get; set; }
