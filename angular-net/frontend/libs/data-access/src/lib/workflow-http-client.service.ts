@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+
 import { COMMON_CONFIG_TOKEN, Config } from '@frontend/common-config';
 @Injectable({
   providedIn: 'root',

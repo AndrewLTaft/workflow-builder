@@ -10,7 +10,7 @@ public class Part
 
   public bool Completed { get; set; } = false;
 
-  public int? StepId { get; set; }
+  public Guid? StepId { get; set; }
 
   public Step? Step { get; set; }
 }

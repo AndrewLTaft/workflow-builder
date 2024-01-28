@@ -8,10 +8,22 @@ public class Create
   {
     builder.MapPost("workflow", async (Workflow_Post_Request workflow, WorkflowService service) =>
     {
-      return await service.CreateAsync(workflow.Name, workflow.Description, workflow.Steps);
+      return await service.CreateAsync(
+        new Workflow_Create
+        {
+          Name = workflow.Name,
+          Description = workflow.Description,
+          Steps = workflow.Steps.Select(step => new Step
+          {
+            Id = new Guid(),
+            Name = step.Name
+          })
+            .ToList()
+        });
     })
     .WithOpenApi();
   }
 }
 
-record Workflow_Post_Request(string Name, string? Description, List<string> Steps);
+record Workflow_Post_Request(string Name, string? Description, List<Step_Post_Request> Steps);
+record Step_Post_Request(string Name);

@@ -13,7 +13,3 @@ public class GetAll
     .WithOpenApi();
   }
 }
-
-// record Workflow_GetAll_Response(int Id, string Name, string? Description, List<Step_Response> steps);
-
-// record Step_Response(int Id, string Name);

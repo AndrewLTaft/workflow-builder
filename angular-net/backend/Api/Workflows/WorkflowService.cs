@@ -30,13 +30,18 @@ public class WorkflowService
           .ToListAsync();
   }
 
-  public async Task<Workflow> CreateAsync(string name, string? description, List<string> steps)
+  public async Task<Workflow> CreateAsync(Workflow_Create workflow)
   {
     var dbModel = new Api.DataAcess.Models.Workflow
     {
-      Name = name,
-      Description = description,
-      Steps = steps.Select((s, i) => new DataAcess.Models.Step { Name = s, Order = i }).ToList()
+      Name = workflow.Name,
+      Description = workflow.Description,
+      Steps = workflow.Steps.Select((s, i) => new DataAcess.Models.Step
+      {
+        Id = s.Id ?? new Guid(),
+        Name = s.Name,
+        Order = i
+      }).ToList()
     };
     db.Workflows.Add(dbModel);
     await db.SaveChangesAsync();
@@ -66,7 +71,12 @@ public class WorkflowService
         var dbStep = dbModel.Steps.FirstOrDefault(s => s.Id == newStep.Id);
         if (dbStep == null)
         {
-          dbStep = new() { Name = newStep.Name, Order = i };
+          dbStep = new()
+          {
+            Id = new Guid(),
+            Name = newStep.Name,
+            Order = i
+          };
         }
         else
         {
@@ -97,15 +107,21 @@ public class WorkflowService
     }
   }
 }
-public class Workflow
+
+public class Workflow_Create
 {
-  public int Id { get; init; }
   public required string Name { get; init; }
   public string? Description { get; init; }
   public List<Step> Steps { get; init; } = new List<Step>();
 }
-public class Step
+
+public class Workflow : Workflow_Create
 {
   public int Id { get; init; }
+}
+
+public class Step
+{
+  public Guid? Id { get; init; }
   public required string Name { get; init; }
 }
