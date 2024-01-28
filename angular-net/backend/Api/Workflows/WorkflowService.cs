@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Api.DataAcess;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Api.Workflows;
 
@@ -15,19 +16,18 @@ public class WorkflowService
   public async Task<List<Workflow>> GetAllAsync()
   {
     return await db.Workflows
-
-          .Select(w => new Workflow
-          {
-            Id = w.Id,
-            Name = w.Name,
-            Description = w.Description,
-            Steps = w.Steps.OrderBy(s => s.Order).Select(s => new Step
-            {
-              Id = s.Id,
-              Name = s.Name
-            }).ToList()
-          })
+          .Include(w => w.Steps)
+          .Select(w => FromModel(w))
           .ToListAsync();
+  }
+
+  public async Task<Workflow> GetAsync(int id)
+  {
+    var dbModel = await db.Workflows
+          .Include(w => w.Steps)
+          .SingleAsync(w => w.Id == id);
+
+    return FromModel(dbModel);
   }
 
   public async Task<Workflow> CreateAsync(Workflow_Create workflow)
@@ -46,17 +46,7 @@ public class WorkflowService
     db.Workflows.Add(dbModel);
     await db.SaveChangesAsync();
 
-    return new Workflow
-    {
-      Id = dbModel.Id,
-      Name = dbModel.Name,
-      Description = dbModel.Description,
-      Steps = dbModel.Steps.Select(s => new Step
-      {
-        Id = s.Id,
-        Name = s.Name
-      }).ToList()
-    };
+    return FromModel(dbModel);
   }
 
   public async Task<Workflow> UpdateAsync(Workflow workflow)
@@ -89,22 +79,44 @@ public class WorkflowService
 
       await db.SaveChangesAsync();
 
-      return new Workflow
-      {
-        Id = dbModel.Id,
-        Name = dbModel.Name,
-        Description = dbModel.Description,
-        Steps = dbModel.Steps.Select(s => new Step
-        {
-          Id = s.Id,
-          Name = s.Name
-        }).ToList()
-      };
+      return FromModel(dbModel);
     }
     else
     {
       throw new ArgumentException("Workflow not found");
     }
+  }
+
+  public Step? GetNextStep(Workflow workflow, Guid? currentStepId)
+  {
+    if (currentStepId == null)
+    {
+      return workflow.Steps[0];
+    }
+    var currIndex = workflow.Steps.FindIndex(s => s.Id == currentStepId);
+    if (currIndex == -1)
+    {
+      throw new ArgumentOutOfRangeException("currentStepId is not valid step");
+    }
+    if (currIndex == workflow.Steps.Count() - 1)
+    {
+      return null;
+    }
+    return workflow.Steps[currIndex + 1];
+  }
+  private static Workflow FromModel(DataAcess.Models.Workflow model)
+  {
+    return new Workflow
+    {
+      Id = model.Id,
+      Name = model.Name,
+      Description = model.Description,
+      Steps = model.Steps.OrderBy(s => s.Order).Select(s => new Step
+      {
+        Id = s.Id,
+        Name = s.Name
+      }).ToList()
+    };
   }
 }
 
