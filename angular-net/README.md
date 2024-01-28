@@ -32,6 +32,9 @@ I normally am using angular as part of a mono repo with multiple apps all hosted
   - [x] Pass dotnet test
   - [ ] Build sample e2e test that runs front and back
 - [ ] Move parts through workflows
+  - [x] Create parts
+  - [x] Parts are on a step and can be advanced/completed
+  - [ ] Prevent editing Workflows with parts that are not completed
 - [ ] Resources
 - [ ] Act as a resource (complete steps)
 - [ ] More complex business rules around editing workflows
