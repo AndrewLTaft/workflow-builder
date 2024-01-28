@@ -1,1 +1,22 @@
-<p>parts works!</p>
+<ul class="nav nav-pills nav-fill flex-column">
+  <li class="nav-item">
+    <a
+      class="nav-link mb-3"
+      [routerLink]="'new'"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >New Part</a
+    >
+  </li>
+  @for (part of parts$ | async; track part.id) {
+  <li class="nav-item">
+    <a
+      class="nav-link"
+      [routerLink]="[part.id]"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+      >{{ part.id }}</a
+    >
+  </li>
+  }
+</ul>

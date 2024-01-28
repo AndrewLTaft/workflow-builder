@@ -1,0 +1,25 @@
+<p>New Part</p>
+<form [formGroup]="form">
+  <div class="mb-3">
+    <label for="workflow" class="form-label">Workflow</label>
+    <select
+      id="workflow"
+      placeholder="Workflow name"
+      [formControlName]="'workflowId'"
+      class="form-select"
+    >
+      @for (workflow of _workflows$ | async; track workflow.id) {
+      <option [ngValue]="workflow.id">{{ workflow.name }}</option>
+      }
+    </select>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!form.valid"
+    (click)="Submit()"
+  >
+    Submit
+  </button>
+</form>
